@@ -2,9 +2,12 @@ package com.foodwala.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.foodwala.exception.CategoryException;
 import com.foodwala.model.Category;
 
+@Repository
 public interface CategoryService {
 
 	

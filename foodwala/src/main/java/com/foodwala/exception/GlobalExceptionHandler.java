@@ -48,9 +48,39 @@ public class GlobalExceptionHandler {
 		
 		return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
 		
-		
-		
 	}
+	
+	
+	
+	@ExceptionHandler(AddressException.class)
+	public ResponseEntity<ErrorDetails> noAddressFoundExceptionpHnadler(AddressException ae ,WebRequest wR){
+		
+		ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(ae.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails , HttpStatus.NOT_FOUND);
+	
+	}
+	
+	
+	
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<ErrorDetails> noCustomerExecptionHnadler(CustomerException ce ,WebRequest wR){
+		
+        ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(ce.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+	
+	}
+	
+	
 	
 	
 	@ExceptionHandler(Exception.class)
