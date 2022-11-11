@@ -53,17 +53,6 @@ public ResponseEntity<Customer> deleteCustomer(@RequestBody Customer customer) t
 }
 
 
-//
-//@DeleteMapping("/customer/{cId}")
-//public ResponseEntity<Customer> deleteStudentByRollHandler(@PathVariable("cId") Integer roll) throws CustomerException{
-//	
-//	Customer cus =  customerService.updateCustomer(null)
-//	Customer deletedCustomer= cus.
-//	
-//	return new ResponseEntity<Customer>(deletedStudent,HttpStatus.OK);
-//	
-//}
-
 
 @GetMapping("/getcustomer")
 public ResponseEntity<Customer> viewCustomer(@RequestBody Customer customer) throws CustomerException{

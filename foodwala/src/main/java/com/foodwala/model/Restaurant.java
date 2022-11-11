@@ -29,6 +29,8 @@ public class Restaurant {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer restaurantId;
 	private String restaurantName;
+	private String managerName;
+	private String contactNumber;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
@@ -36,8 +38,7 @@ public class Restaurant {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Item> itemList;
 	
-	private String managerName;
-	private String contactNumber;
+	
 	
 	
 
