@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import com.foodwala.exception.CategoryException;
 import com.foodwala.exception.CustomerException;
 import com.foodwala.model.Category;
+import com.foodwala.model.CurrantUserSession;
 import com.foodwala.model.Customer;
 import com.foodwala.repository.CustomerRepo;
+import com.foodwala.repository.SessionRepo;
 
 
 @Service
@@ -20,6 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepo customerRepo;
 	
+	private SessionRepo sRepo;
 	
 	
 
@@ -43,40 +46,92 @@ public class CustomerServiceImpl implements CustomerService {
 
 	
 	@Override
-	public Customer updateCustomer(Customer customer) throws CustomerException {
+	public Customer updateCustomer(Customer customer,String key) throws CustomerException {
+		
+		
+		//--------------------------------
+		
+		CurrantUserSession loggedInUser= sRepo.findByUuid(key);
+		
+		if(loggedInUser == null) {
+			throw new CustomerException("Please provide a valid key to update a customer");
+		}
+		
+		
 	
-		Optional<Customer> checkCustomer = customerRepo.findById(customer.getCustomerId());
 		
-		if(checkCustomer.isPresent()) {
+		if(customer.getCustomerId() == loggedInUser.getUserId()) {
+		
 			
-			return customerRepo.save(customer);
+			Optional<Customer> checkCustomer = customerRepo.findById(customer.getCustomerId());
+			
+			if(checkCustomer.isPresent()) {
+				
+				return customerRepo.save(customer);
+				
+			}
+			
+			else {
+				
+				throw new CustomerException("Customer does not exist with this Id");
+			}
+			
+			
 			
 		}
+		else
+			throw new CustomerException("Invalid Customer Details, please login first");
+
 		
-		else {
-			
-			throw new CustomerException("Customer does not exist with this Id");
-		}
+		
+		//-------------------------*------
+	
+		
 		
 	}
 	
 
 	@Override
-	public Customer removeCustomer(Customer customer) throws CustomerException {
+	public Customer removeCustomer(Customer customer, String key) throws CustomerException {
 		
-	Optional<Customer> checkCustomer = customerRepo.findById(customer.getCustomerId());
+		
+		
+		
+		//---------------------------
+		
+
+		CurrantUserSession loggedInUser= sRepo.findByUuid(key);
+		
+		if(loggedInUser == null) {
+			throw new CustomerException("Please provide a valid key to update a customer");
+		}
+		
 	
-	if(checkCustomer.isPresent()) {
 		
-		customerRepo.deleteById(checkCustomer.get().getCustomerId());
+		if(customer.getCustomerId() == loggedInUser.getUserId()) {
 		
-		return checkCustomer.get();
+			Optional<Customer> checkCustomer = customerRepo.findById(customer.getCustomerId());
+			
+			if(checkCustomer.isPresent()) {
+				
+				customerRepo.deleteById(checkCustomer.get().getCustomerId());
+				
+				return checkCustomer.get();
+				
+			}else {
+				
+				throw new CustomerException("Customer does not exist ..specify correct one");
+				
+			   }
+				
+			
+		}
+		else
+			throw new CustomerException("Invalid Customer Details, please login first");
 		
-	}else {
+		//--------------------------
 		
-		throw new CustomerException("Customer does not exist ..specify correct one");
-		
-	   }
+	
 		
 	}
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foodwala.exception.CategoryException;
@@ -35,18 +36,18 @@ public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) thro
 }
 
 @PutMapping("/customer")
-public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerException{
+public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer, @RequestParam(required = false) String key) throws CustomerException{
 	
-	     Customer cus =  customerService.updateCustomer(customer);
+	     Customer cus =  customerService.updateCustomer(customer,key);
 	     
 	return  new ResponseEntity<Customer>(cus ,HttpStatus.ACCEPTED);
 	
 }
 
 @DeleteMapping("/customer")
-public ResponseEntity<Customer> deleteCustomer(@RequestBody Customer customer) throws CustomerException{
+public ResponseEntity<Customer> deleteCustomer(@RequestBody Customer customer, @RequestParam(required = false) String key) throws CustomerException{
 	
-	     Customer cus =  customerService.removeCustomer(customer);
+	     Customer cus =  customerService.removeCustomer(customer,key);
 	     
 	return  new ResponseEntity<Customer>(cus ,HttpStatus.ACCEPTED);
 	
