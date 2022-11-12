@@ -6,4 +6,6 @@ import com.foodwala.model.Customer;
 
 public interface CustomerRepo extends JpaRepository<Customer, Integer>{
 
+	public Customer findByMobileNumber(String mobileNumber);
+	
 }

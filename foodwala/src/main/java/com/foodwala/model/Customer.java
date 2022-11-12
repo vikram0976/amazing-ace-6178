@@ -33,6 +33,8 @@ public class Customer {
 	private String gender;
 	private String mobileNumber;
 	private String email;
+	//souvik added password
+	private String password;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
