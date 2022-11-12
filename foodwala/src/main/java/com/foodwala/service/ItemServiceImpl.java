@@ -104,7 +104,8 @@ public class ItemServiceImpl implements ItemService{
 			throw new ItemException("item object should not be null");
 		}
 		
-		List<Item> allitem= iRepo.findByname(name);
+		//check
+		List<Item> allitem= (List<Item>) iRepo.findByitemName(name);
 		
 		if(allitem.size()==0) {
 			throw new ItemException("no item available by this name");

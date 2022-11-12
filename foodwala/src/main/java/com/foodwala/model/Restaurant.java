@@ -1,6 +1,7 @@
 package com.foodwala.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,7 +40,7 @@ public class Restaurant {
 	
 
 	@ManyToMany(cascade =CascadeType.ALL)
-	private List<Item> itemList;
+	private List<Item> itemList=new ArrayList<>();
 	
 	private String managerName;
 	private String contactNumber;

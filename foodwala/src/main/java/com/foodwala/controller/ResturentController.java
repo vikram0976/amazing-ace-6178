@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.foodwala.exception.ResturentException;
@@ -16,6 +17,7 @@ import com.foodwala.service.ResturentService;
 
 @RestController
 public class ResturentController {
+	
 	@Autowired
 	public ResturentService rService;
 	
@@ -29,18 +31,18 @@ public class ResturentController {
 	}
 	
 	@PutMapping("/resturent")
-	public ResponseEntity<Restaurant> UpdateResturent(@RequestBody Restaurant returent) throws ResturentException{
+	public ResponseEntity<Restaurant> UpdateResturent(@RequestBody Restaurant returent , @RequestParam(required = false) String key) throws ResturentException{
 		
-		Restaurant updatedResturent=rService.UpdateResturent(returent);
+		Restaurant updatedResturent=rService.UpdateResturent(returent,key);
 		
 		return new ResponseEntity<>(updatedResturent,HttpStatus.OK);
 		
 	}
 	
 	@DeleteMapping("/resturent")
-	public ResponseEntity<String> delateResturent(@RequestBody Restaurant resturent) throws ResturentException{
+	public ResponseEntity<String> delateResturent(@RequestBody Restaurant resturent,@RequestParam(required = false) String key) throws ResturentException{
 		
-		String result=rService.DelateResturent(resturent);
+		String result=rService.DelateResturent(resturent,key);
 		
 		return new ResponseEntity<String>(result,HttpStatus.OK);
 		
