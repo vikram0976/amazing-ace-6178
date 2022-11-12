@@ -1,5 +1,6 @@
 package com.foodwala.exception;
 
+
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,39 @@ public class GlobalExceptionHandler {
 	
 	
 	
+	@ExceptionHandler(BillException.class)
+	public ResponseEntity<ErrorDetails> billExceptionHandler(BillException nhfe, WebRequest wR){
+		
+		
+		ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(nhfe.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	
+	@ExceptionHandler(ItemException.class)
+	public ResponseEntity<ErrorDetails> itemExceptionHandler(ItemException nhfe, WebRequest wR){
+		
+		
+		ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(nhfe.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	
+	
+	
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorDetails> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException mave){
 		
@@ -34,6 +68,9 @@ public class GlobalExceptionHandler {
 		
 		
 	}
+	
+	
+
 	
 
 	@ExceptionHandler(NoHandlerFoundException.class)
@@ -64,6 +101,20 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(errorDetails , HttpStatus.NOT_FOUND);
 	
 	}
+	
+	@ExceptionHandler(OrderDetailsException.class)
+	public ResponseEntity<ErrorDetails> noAddressFoundExceptionpHnadler(OrderDetailsException ae ,WebRequest wR){
+		
+		ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(ae.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails , HttpStatus.NOT_FOUND);
+	
+	}
+	
 	
 	
 	
