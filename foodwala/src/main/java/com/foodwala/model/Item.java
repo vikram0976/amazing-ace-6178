@@ -1,6 +1,7 @@
 package com.foodwala.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -45,7 +46,7 @@ public class Item {
 	
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Restaurant> restaurants;
+	private List<Restaurant> restaurants = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private FoodCart foodCart;

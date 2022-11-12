@@ -2,8 +2,9 @@ package com.foodwala.service;
 
 import java.util.List;
 
+
 import com.foodwala.exception.CustomerException;
-import com.foodwala.exception.OrderDerailsException;
+import com.foodwala.exception.OrderDetailsException;
 import com.foodwala.exception.OrderDetailsException;
 import com.foodwala.exception.RestaurantExecption;
 import com.foodwala.model.Customer;

@@ -6,13 +6,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.foodwala.exception.CustomerException;
 import com.foodwala.exception.ResturentException;
 import com.foodwala.model.Address;
+import com.foodwala.model.CurrantUserSession;
+import com.foodwala.model.Customer;
 import com.foodwala.model.Item;
 import com.foodwala.model.Restaurant;
 import com.foodwala.repository.AddressRepo;
 import com.foodwala.repository.ItemRepo;
 import com.foodwala.repository.ResturentRespo;
+import com.foodwala.repository.SessionRepo;
 
 import net.bytebuddy.implementation.bytecode.Throw;
 @Service
@@ -25,6 +29,9 @@ public class ResturentServiceImpl implements ResturentService{
 	
 	@Autowired
 	public AddressRepo aRepo;
+	
+	@Autowired
+	public SessionRepo sRepo;
 
 	@Override
 	public Restaurant SaveResturent(Restaurant resturent) {
@@ -39,57 +46,84 @@ public class ResturentServiceImpl implements ResturentService{
 	}
 
 	@Override
-	public Restaurant UpdateResturent(Restaurant resturent) throws ResturentException {
+	public Restaurant UpdateResturent(Restaurant resturent, String key) throws ResturentException {
 		
-		Optional<Restaurant> resturentobj=rservice.findById(resturent.getRestaurantId());
-		
-		Restaurant updateResturent=resturentobj.get(); 
-		
-	
-		
-	         List<Item> items=resturent.getItemList();	
-	         
-	     	if(updateResturent==null) {
-				throw new ResturentException("Resturent not found by the given Id");
-			}
-		     
 
-			List<Item> item=resturent.getItemList();
-			for(Item item1:items) {
-				item1.getRestaurants().add(resturent);
-			}
+		
+	     CurrantUserSession loggedInUser= sRepo.findByUuid(key);
+		
+		if(loggedInUser == null) {
+			throw new ResturentException("Please provide a valid key to update a Restaurant");
+		}
+		
+		
+		if(resturent.getRestaurantId() == loggedInUser.getUserId()) {
+		
+			Optional<Restaurant> resturentobj=rservice.findById(resturent.getRestaurantId());
+			
+			Restaurant updateResturent=resturentobj.get(); 
 			
 		
-					
-		    return rservice.save(resturent);
+			
+		         List<Item> items=resturent.getItemList();	
+		         
+		     	if(updateResturent==null) {
+					throw new ResturentException("Resturent not found by the given Id");
+				}
+			     
+
+				List<Item> item=resturent.getItemList();
+				for(Item item1:items) {
+					item1.getRestaurants().add(resturent);
+				}
+				
+			
+						
+			    return rservice.save(resturent);
+			
+		}
+		else
+			throw new ResturentException("Invalid Restaurant Details, please login first");
+		
+
+	
 	}
 
 	@Override
-	public String DelateResturent(Restaurant resturent) throws ResturentException {
+	public String DelateResturent(Restaurant resturent,String key) throws ResturentException {
 		
 
 
 		
+	     CurrantUserSession loggedInUser= sRepo.findByUuid(key);
 		
-	    
-	    
-		Optional<Restaurant> DResturent=rservice.findById(resturent.getRestaurantId());
-	
+		if(loggedInUser == null) {
+			throw new ResturentException("Please provide a valid key to update a Restaurant");
+		}
 		
 		
-		 
+		if(resturent.getRestaurantId() == loggedInUser.getUserId()) {
 		
-		 
-		 if(DResturent.isPresent()) {
-			 Restaurant drest=DResturent.get();
-			
-			 rservice.deleteById(resturent.getRestaurantId());
-				
-				return "Resturent delation sussfully";
-			
 			 
-		 }
-		 throw new ResturentException("resturent not present in database which you want to remove");
+			Optional<Restaurant> DResturent=rservice.findById(resturent.getRestaurantId());
+		
+	
+			 if(DResturent.isPresent()) {
+				 Restaurant drest=DResturent.get();
+				
+				 rservice.deleteById(resturent.getRestaurantId());
+					
+					return "Resturent delation sussfully";
+				
+				 
+			 }
+			 throw new ResturentException("resturent not present in database which you want to remove");
+			
+		}
+		else
+			throw new ResturentException("Invalid Restaurant Details, please login first");
+		
+
 		 
 	}
 
