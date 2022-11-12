@@ -19,12 +19,12 @@ public interface BillService {
 	
 	public Bill viewBill (Bill bill) throws BillException;
 	
-	public List<Bill> viewBills(LocalDate startDate, LocalDate endDate) throws BillException;
+	//public List<Bill> viewBills(LocalDate startDate, LocalDate endDate) throws BillException;
 	
 	public List<Bill> viewBillsCId(Integer custId) throws CustomerException, BillException;
 	
 	public double calculateTotalCost(Bill Bill) throws BillException;
 	
-	List<Bill> viewBillsD(LocalDate startDate, LocalDate endDate) throws BillException;
+	
 
 }

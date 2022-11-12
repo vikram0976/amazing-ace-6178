@@ -12,7 +12,7 @@ import com.foodwala.model.Bill;
 @Repository
 public interface BillRepo extends JpaRepository<Bill, Integer> {
 	
-	@Query("select b from Bill b where b.billDate BETWEEN :startDate AND :endDate")
-	public List<Bill> findByBillDateBetween(LocalDate startDate , LocalDate endDate);
+//	@Query("select b from Bill b where b.billDate BETWEEN :startDate AND :endDate")
+//	public List<Bill> findByBillDateBetween(LocalDate startDate , LocalDate endDate);
 	
 }

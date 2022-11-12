@@ -56,14 +56,14 @@ public class BillController {
 		return new ResponseEntity<Bill>(b,HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/getBillsByDate/{startDate}/{endDate}")
-	public ResponseEntity<List<Bill>> viewBillbyDate(@PathVariable("startDate") LocalDate startDate,@PathVariable("endDate") LocalDate endDate) throws BillException {
-		System.out.println("sdkghdfjk");
-		List<Bill> bl= bService.viewBillsD(startDate, endDate);
-		
-		return new ResponseEntity<List<Bill>>(bl, HttpStatus.OK);
-	}
-	
+//	@GetMapping("/getBillsByDate/{startDate}/{endDate}")
+//	public ResponseEntity<List<Bill>> viewBillbyDate(@PathVariable("startDate") LocalDate startDate,@PathVariable("endDate") LocalDate endDate) throws BillException {
+//		System.out.println("sdkghdfjk");
+//		List<Bill> bl= bService.viewBillsD(startDate, endDate);
+//		
+//		return new ResponseEntity<List<Bill>>(bl, HttpStatus.OK);
+//	}
+//	
 	
 	
 	

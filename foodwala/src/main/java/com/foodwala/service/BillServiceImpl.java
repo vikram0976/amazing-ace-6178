@@ -81,14 +81,14 @@ public class BillServiceImpl implements BillService {
 		
 	}
 
-	@Override
-	public List<Bill> viewBillsD(LocalDate startDate, LocalDate endDate) throws BillException {
-		List<Bill> bl= bRepo.findByBillDateBetween(startDate, endDate);
-		if(bl.size()==0) {
-			throw new BillException("no bill available from date "+startDate+" to "+endDate);
-		}
-		return bl;
-	}
+//	@Override
+//	public List<Bill> viewBillsD(LocalDate startDate, LocalDate endDate) throws BillException {
+//		List<Bill> bl= bRepo.findByBillDateBetween(startDate, endDate);
+//		if(bl.size()==0) {
+//			throw new BillException("no bill available from date "+startDate+" to "+endDate);
+//		}
+//		return bl;
+//	}
 
 	@Override
 	public List<Bill> viewBillsCId(Integer custId) throws CustomerException, BillException {
