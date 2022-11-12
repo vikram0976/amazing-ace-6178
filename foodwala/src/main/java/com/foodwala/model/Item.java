@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
+import lombok.experimental.NonFinal;
 
 @Entity
 @Data
@@ -30,6 +32,8 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer itemId;
+	
+	@NonNull
 	private String itemName;
 	
 	@JsonIgnore

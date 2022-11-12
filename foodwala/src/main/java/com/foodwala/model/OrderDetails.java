@@ -24,7 +24,7 @@ public class OrderDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer orderId;
-	private LocalDateTime orderDate;
+	private LocalDateTime orderDate=LocalDateTime.now();
 	
 	
 	
