@@ -44,7 +44,8 @@ public class Restaurant {
 	private String managerName;
 	private String contactNumber;
 	
-	
+	//souvik added password
+	private String password;
 
 	
 }

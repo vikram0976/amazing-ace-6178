@@ -34,6 +34,8 @@ public class Customer {
 	private String mobileNumber;
 	private String email;
 	
+	private String password;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
@@ -42,6 +44,7 @@ public class Customer {
 	private FoodCart foodCart;
 	
 	
+
 	
 	
 
