@@ -1,7 +1,6 @@
 package com.foodwala.model;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -27,12 +26,15 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
+	
 	private String firstName;
 	private String lastName;
 	private Integer age;
 	private String gender;
 	private String mobileNumber;
+	private String email;
 	
+	private String password;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
@@ -42,7 +44,8 @@ public class Customer {
 	private FoodCart foodCart;
 	
 	
-	private String email;
+
+	
 	
 
 	

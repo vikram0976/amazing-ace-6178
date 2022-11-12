@@ -34,7 +34,8 @@ public class FoodCart {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Item> itemList;
 	
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	private OrderDetails orderDetails;
+	
+	
 }

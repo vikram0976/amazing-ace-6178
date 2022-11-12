@@ -7,4 +7,8 @@ import com.foodwala.model.Customer;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Integer>{
 
+	
+	//souvik added password
+	public Customer findByMobileNumber(String mobileNumber);
+	
 }

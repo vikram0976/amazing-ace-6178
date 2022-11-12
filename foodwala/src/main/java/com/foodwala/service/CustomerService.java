@@ -1,12 +1,23 @@
 package com.foodwala.service;
 
-import org.springframework.stereotype.Repository;
-
+import java.util.List;
+import com.foodwala.exception.CategoryException;
+import com.foodwala.exception.CustomerException;
+import com.foodwala.model.Category;
 import com.foodwala.model.Customer;
 
-@Repository
+
 public interface CustomerService {
 	
-	public Customer addCustomer(Customer customer);
+    public Customer addCustomer(Customer customer) throws CustomerException;
+	
+	public Customer updateCustomer(Customer customer) throws CustomerException;
+	
+	public Customer removeCustomer(Customer customer) throws CustomerException;
+	
+	public Customer viewCustomer(Customer customer) throws CustomerException;
+	
+	public List<Customer> viewAllCustomer() throws CustomerException;
+	
 
 }

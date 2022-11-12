@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,17 +31,21 @@ public class Restaurant {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer restaurantId;
 	private String restaurantName;
-
-	@OneToOne(cascade = CascadeType.ALL)
+	
+	
+    
+	@OneToOne(cascade =CascadeType.ALL)
 	private Address address;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+
+	@ManyToMany(cascade =CascadeType.ALL)
 	private List<Item> itemList;
 	
 	private String managerName;
 	private String contactNumber;
 	
-	
+	//souvik added password
+	private String password;
 
 	
 }
