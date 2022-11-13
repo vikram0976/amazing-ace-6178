@@ -2,6 +2,8 @@ package com.foodwala.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,41 +30,41 @@ public class OrderDetailsController {
 	private OrderDetailsService oService;
 	
 	@PostMapping("/orders")
-	public ResponseEntity<OrderDetails> addOrder(@RequestBody OrderDetails order) throws OrderDetailsException{
+	public ResponseEntity<OrderDetails> addOrder( @RequestBody OrderDetails order) throws OrderDetailsException{
 		
 		 OrderDetails od= oService.addOrder(order);
 		return new ResponseEntity<OrderDetails>(od,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/orders")
-	public ResponseEntity<OrderDetails> removeOrder(@RequestBody OrderDetails order) throws OrderDetailsException{
+	public ResponseEntity<OrderDetails> removeOrder( @RequestBody OrderDetails order) throws OrderDetailsException{
 		
 		OrderDetails od= oService.removeOrder(order);
 		return new ResponseEntity<OrderDetails>(od,HttpStatus.OK);
 	}
 	
 	@PutMapping("/orders")
-	public ResponseEntity<OrderDetails> updateOrder(@RequestBody OrderDetails order) throws OrderDetailsException {
+	public ResponseEntity<OrderDetails> updateOrder( @RequestBody OrderDetails order) throws OrderDetailsException {
 		OrderDetails od= oService.updateOrder(order);
 		return new ResponseEntity<OrderDetails>(od,HttpStatus.OK);
 		
 	}
 	
 	@GetMapping("/orders")
-	public ResponseEntity<OrderDetails> viewOrder(@RequestBody OrderDetails order) throws OrderDetailsException{
+	public ResponseEntity<OrderDetails> viewOrder( @RequestBody OrderDetails order) throws OrderDetailsException{
 		
 		OrderDetails od= oService.viewOrder(order);
 		return new ResponseEntity<OrderDetails>(od,HttpStatus.OK);
 	}
 	
 	@GetMapping("/AllRestaurantOrders")
-	public ResponseEntity<List<OrderDetails>> viewOrderR(@RequestBody Restaurant res) throws RestaurantExecption, OrderDetailsException {
+	public ResponseEntity<List<OrderDetails>> viewOrderR( @RequestBody Restaurant res) throws RestaurantExecption, OrderDetailsException {
 		List<OrderDetails> od=oService.viewAllOrder(res);
 		return new ResponseEntity<List<OrderDetails>>(od,HttpStatus.OK);
 	}
 	
 	@GetMapping("/AllCustomerOrders")
-	public  ResponseEntity<List<OrderDetails>> viewOrderC(@RequestBody Customer customer) throws CustomerException, OrderDetailsException{
+	public  ResponseEntity<List<OrderDetails>> viewOrderC( @RequestBody Customer customer) throws CustomerException, OrderDetailsException{
 		
 		List<OrderDetails> od=oService.viewAllOrder(customer);
 		return new ResponseEntity<List<OrderDetails>>(od,HttpStatus.OK);

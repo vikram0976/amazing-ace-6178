@@ -2,6 +2,8 @@ package com.foodwala.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,7 @@ public class CustomerController {
 private CustomerService customerService; 
 
 @PostMapping("/customer")
-public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws CustomerException{
+public ResponseEntity<Customer> addCustomer( @RequestBody Customer customer) throws CustomerException{
 	
 	 Customer cus = customerService.addCustomer(customer);
 	 
@@ -36,7 +38,7 @@ public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) thro
 }
 
 @PutMapping("/customer")
-public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer, @RequestParam(required = false) String key) throws CustomerException{
+public ResponseEntity<Customer> updateCustomer( @RequestBody Customer customer, @RequestParam(required = false) String key) throws CustomerException{
 	
 	     Customer cus =  customerService.updateCustomer(customer,key);
 	     
@@ -45,7 +47,7 @@ public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer, @
 }
 
 @DeleteMapping("/customer")
-public ResponseEntity<Customer> deleteCustomer(@RequestBody Customer customer, @RequestParam(required = false) String key) throws CustomerException{
+public ResponseEntity<Customer> deleteCustomer( @RequestBody Customer customer, @RequestParam(required = false) String key) throws CustomerException{
 	
 	     Customer cus =  customerService.removeCustomer(customer,key);
 	     
@@ -56,7 +58,7 @@ public ResponseEntity<Customer> deleteCustomer(@RequestBody Customer customer, @
 
 
 @GetMapping("/getcustomer")
-public ResponseEntity<Customer> viewCustomer(@RequestBody Customer customer) throws CustomerException{
+public ResponseEntity<Customer> viewCustomer( @RequestBody Customer customer) throws CustomerException{
 	
 	Customer cus = customerService.viewCustomer(customer);
 	

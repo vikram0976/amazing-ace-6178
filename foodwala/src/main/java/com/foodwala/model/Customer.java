@@ -30,23 +30,23 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
 
-	@NotNull(message = "enter first name")
-	@Size(min = 3,max = 15)
+//	@NotNull(message = "enter first name")
+//	@Size(min = 3,max = 15)
 	private String firstName;
   
-	@NotNull(message = "enter last name")
-	@Size(min = 3,max = 15)
+//	@NotNull(message = "enter last name")
+//	@Size(min = 3,max = 15)
 	private String lastName;
 	
-	@NotNull
-	@Size(min = 12, message ="enter the vaild age" )
+//	@NotNull
+//	@Size(min = 12, message ="enter the vaild age" )
 	private Integer age;
   
-	@NotNull
+	
 	private String gender;
 	
-	@NotNull
-	@Size(min = 10, message = "entre correct mobile number")
+//	@NotNull
+//	@Size(min = 10, message = "entre correct mobile number")
 	private String mobileNumber;
 
 	
@@ -60,7 +60,7 @@ public class Customer {
 	private FoodCart foodCart;
 	
 
-	@Email(message = "email formate is not correct ")
+	//@Email(message = "email formate is not correct ")
 	private String email;
 
 	

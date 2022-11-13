@@ -2,6 +2,8 @@ package com.foodwala.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class CategoryController {
 	
 	
 	@PutMapping("/categories")
-	public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws CategoryException{
+	public ResponseEntity<Category> updateCategory( @RequestBody Category category) throws CategoryException{
 		
 		
 		return  new ResponseEntity<Category>(categoryService.updateCategory(category),HttpStatus.ACCEPTED);
@@ -41,7 +43,7 @@ public class CategoryController {
 	
 	
 	@DeleteMapping("/categories")
-	public ResponseEntity<Category> removeCategory(@RequestBody Category category) throws CategoryException {
+	public ResponseEntity<Category> removeCategory( @RequestBody Category category) throws CategoryException {
 		
 		return  new ResponseEntity<Category>(categoryService.removeCategory(category),HttpStatus.ACCEPTED);
 		
@@ -49,7 +51,7 @@ public class CategoryController {
 	
 	
 	@GetMapping("/getcategories")
-	public ResponseEntity<Category> viewCategory(@RequestBody Category category) throws CategoryException{
+	public ResponseEntity<Category> viewCategory( @RequestBody Category category) throws CategoryException{
 		
 		return  new ResponseEntity<Category>(categoryService.viewCategory(category),HttpStatus.ACCEPTED);
 		

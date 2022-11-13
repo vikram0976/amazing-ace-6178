@@ -32,7 +32,7 @@ public class OrderDetails {
 	@OneToOne(cascade = CascadeType.ALL)
 	private FoodCart cart;
 	
-	@NonNull
+	
 	private String orderStatus;
 	
 	@OneToOne(cascade = CascadeType.ALL)

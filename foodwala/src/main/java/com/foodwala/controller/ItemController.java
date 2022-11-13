@@ -2,6 +2,7 @@ package com.foodwala.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,14 @@ public class ItemController {
 	@Autowired
 	private ItemService iService;
 	
-	@PutMapping("/items")
-	public ResponseEntity<Item> addItem(@RequestBody Item item) throws ItemException{
+	@PostMapping("/items")
+	public ResponseEntity<Item> addItem( @RequestBody Item item) throws ItemException{
 		Item it=iService.addItem(item);
 		return new ResponseEntity<Item> (it, HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/items")
-	public ResponseEntity<Item> updateItem(@RequestBody Item item) throws ItemException{
+	@PutMapping("/items")
+	public ResponseEntity<Item> updateItem( @RequestBody Item item) throws ItemException{
 		Item it= iService.updateItem(item);
 		
 		return new ResponseEntity<Item> (it, HttpStatus.ACCEPTED);
@@ -46,14 +47,14 @@ public class ItemController {
 	
 	
 	@DeleteMapping("/items")
-	public ResponseEntity<Item> removeItem(@RequestBody Item item) throws ItemException{
+	public ResponseEntity<Item> removeItem( @RequestBody Item item) throws ItemException{
 		Item it= iService.removeItem(item);
 		
 		return new ResponseEntity<Item> (it, HttpStatus.OK);
 	}
 	
 	@GetMapping("/items")
-	public ResponseEntity<Item> viewItem(@RequestBody Item item) throws ItemException {
+	public ResponseEntity<Item> viewItem( @RequestBody Item item) throws ItemException {
 		
 		Item it= iService.viewItem(item);
 		
@@ -71,7 +72,7 @@ public class ItemController {
 	}
 	
 	@GetMapping("/itemsCate")
-	public ResponseEntity<List<Item>> viewAllCategoryItems(@RequestBody Category category) throws ItemException, CategoryException {
+	public ResponseEntity<List<Item>> viewAllCategoryItems( @RequestBody Category category) throws ItemException, CategoryException {
 		
 		List<Item> it=iService.viewAllCItems(category);
 		return new ResponseEntity<List<Item>> (it, HttpStatus.OK);
@@ -79,7 +80,7 @@ public class ItemController {
 	}
 	
 	@GetMapping("/itemsRest")
-	public ResponseEntity<List<Item>>  viewAllRItems(@RequestBody Restaurant res) throws ItemException, RestaurantExecption {
+	public ResponseEntity<List<Item>>  viewAllRItems( @RequestBody Restaurant res) throws ItemException, RestaurantExecption {
 		
 		List<Item> it=iService.viewAllRItems(res);
 		return new ResponseEntity<List<Item>> (it, HttpStatus.OK);

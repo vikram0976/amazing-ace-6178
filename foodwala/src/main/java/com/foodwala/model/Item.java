@@ -36,16 +36,16 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer itemId;
 	
-	@NonNull
+	
 	private String itemName;
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Category category;
-	@NotNull(message =" quantity should not be more then 10")
-	@Size(min = 1, max = 10)
+//	@NotNull(message =" quantity should not be more then 10")
+//	@Size(min = 1, max = 10)
 	private Integer quantity;
-	@NotNull
+	
 	private double cost;
 	
 	@JsonIgnore

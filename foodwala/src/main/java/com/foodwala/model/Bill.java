@@ -32,10 +32,10 @@ public class Bill {
 	
 	private LocalDateTime billDate;
 	
-	@Max(value = 10,message = "total item should not more then 10")
+	//@Max(value = 10,message = "total item should not more then 10")
 	private Integer totalItem;
 	
-	@Max(value = 10000, message = "max cost should not more then 10000")
+	//@Max(value = 10000, message = "max cost should not more then 10000")
 	private double totalCost;
 	
 	
