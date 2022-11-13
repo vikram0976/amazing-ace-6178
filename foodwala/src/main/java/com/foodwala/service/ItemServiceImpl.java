@@ -12,6 +12,7 @@ import com.foodwala.exception.RestaurantExecption;
 import com.foodwala.model.Category;
 import com.foodwala.model.Item;
 import com.foodwala.model.Restaurant;
+import com.foodwala.repository.CategoryRepo;
 import com.foodwala.repository.ItemRepo;
 
 @Service
@@ -20,6 +21,8 @@ public class ItemServiceImpl implements ItemService{
 	@Autowired
 	private ItemRepo iRepo;
 	
+	@Autowired
+	private CategoryRepo cRepo;
 	
 	@Override
 	public Item addItem(Item item) throws ItemException {
@@ -88,13 +91,33 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public List<Item> viewAllCItems(Category category) throws ItemException, CategoryException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<Category> cat= cRepo.findById(category.getCatId());
+		if(cat.isEmpty()) {
+			throw new CategoryException("no category exist ");
+		}
+		else {
+			
+			//List<Item> itemList = iRepo.findAllById(cat.get().getCatId());
+			
+			List<Item> items = iRepo.findAllByCategory(category);
+			
+			if(items.isEmpty()) {
+				throw new ItemException("no item found by the give category name");
+			}else {
+				return items;
+			}
+			
+			
+		
+		}
+		
+		
 	}
 
 	@Override
 	public List<Item> viewAllRItems(Restaurant res) throws ItemException, RestaurantExecption {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -104,7 +127,7 @@ public class ItemServiceImpl implements ItemService{
 			throw new ItemException("item object should not be null");
 		}
 		
-		List<Item> allitem= iRepo.findByname(name);
+		List<Item> allitem= iRepo.findAllByItemName(name);
 		
 		if(allitem.size()==0) {
 			throw new ItemException("no item available by this name");

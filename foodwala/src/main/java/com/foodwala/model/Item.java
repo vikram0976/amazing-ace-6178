@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,8 +41,10 @@ public class Item {
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Category category;
-	
+	@NotNull(message =" quantity should not be more then 10")
+	@Size(min = 1, max = 10)
 	private Integer quantity;
+	@NotNull
 	private double cost;
 	
 	@JsonIgnore
