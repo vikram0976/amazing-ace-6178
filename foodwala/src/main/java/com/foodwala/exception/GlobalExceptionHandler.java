@@ -17,6 +17,19 @@ import com.foodwala.exception.ErrorDetails;
 public class GlobalExceptionHandler {
 
 	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<ErrorDetails> logInException(LoginException lE, WebRequest wR){
+		
+		
+		ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(lE.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
+		
+	}
 	
 	
 	

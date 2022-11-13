@@ -22,6 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepo customerRepo;
 	
+	@Autowired
 	private SessionRepo sRepo;
 	
 	
