@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
 
 @Entity
@@ -31,7 +32,7 @@ public class OrderDetails {
 	@OneToOne(cascade = CascadeType.ALL)
 	private FoodCart cart;
 	
-	
+	@NonNull
 	private String orderStatus;
 	
 	@OneToOne(cascade = CascadeType.ALL)

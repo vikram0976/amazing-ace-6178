@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,7 +45,10 @@ public class Restaurant {
 	@ManyToMany(cascade =CascadeType.ALL)
 	private List<Item> itemList=new ArrayList<>();
 	
+	@NotNull(message = "Enter manager name")
 	private String managerName;
+	@NotNull(message = "enter contact number")
+	@Size(min = 10, message = "contact number should be 10 digit")
 	private String contactNumber;
 	
 	//souvik added password
