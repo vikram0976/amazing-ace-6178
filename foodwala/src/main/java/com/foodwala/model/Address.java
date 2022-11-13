@@ -29,25 +29,25 @@ public class Address {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer addressId;
-  @NotNull(message = "building name should not be null")
+  //@NotNull(message = "building name should not be null")
   private String buildingName;
-  @NotNull(message = "street Number should not be null")
+  //@NotNull(message = "street Number should not be null")
   private Integer streetNo;
   
-  @NotNull(message = "area name should not be null")
-  @Size(min = 3,max = 12)
+  //@NotNull(message = "area name should not be null")
+ // @Size(min = 3,max = 12)
   private String area;
-  @NotNull(message = "city name should not be null")
-  @Size(min = 3,max = 12)
+//  @NotNull(message = "city name should not be null")
+//  @Size(min = 3,max = 12)
   private String city;
-  @NotNull(message = "state name should not be null")
-  @Size(min = 3,max = 12)
+//  @NotNull(message = "state name should not be null")
+//  @Size(min = 3,max = 12)
   private String state;
-  @NotNull(message = "country name should not be null")
-  @Size(min = 3,max = 12)
+//  @NotNull(message = "country name should not be null")
+//  @Size(min = 3,max = 12)
   private String country;
-  @NotNull(message = "pincode should not be null")
-  @Size(max = 6, min = 6)
+//  @NotNull(message = "pincode should not be null")
+//  @Size(max = 6, min = 6)
   private String pincode;
   
   @JsonIgnore

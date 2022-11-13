@@ -45,10 +45,10 @@ public class Restaurant {
 	@ManyToMany(cascade =CascadeType.ALL)
 	private List<Item> itemList=new ArrayList<>();
 	
-	@NotNull(message = "Enter manager name")
+	//@NotNull(message = "Enter manager name")
 	private String managerName;
-	@NotNull(message = "enter contact number")
-	@Size(min = 10, message = "contact number should be 10 digit")
+//	@NotNull(message = "enter contact number")
+//	@Size(min = 10, message = "contact number should be 10 digit")
 	private String contactNumber;
 	
 	//souvik added password

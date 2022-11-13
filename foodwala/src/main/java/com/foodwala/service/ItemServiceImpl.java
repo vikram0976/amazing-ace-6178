@@ -1,5 +1,6 @@
 package com.foodwala.service;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import com.foodwala.model.Item;
 import com.foodwala.model.Restaurant;
 import com.foodwala.repository.CategoryRepo;
 import com.foodwala.repository.ItemRepo;
+import com.foodwala.repository.ResturentRespo;
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -23,6 +25,9 @@ public class ItemServiceImpl implements ItemService{
 	
 	@Autowired
 	private CategoryRepo cRepo;
+	
+	@Autowired
+	private ResturentRespo rRepo;
 	
 	@Override
 	public Item addItem(Item item) throws ItemException {
@@ -118,7 +123,20 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<Item> viewAllRItems(Restaurant res) throws ItemException, RestaurantExecption {
 		
-		return null;
+		Optional<Restaurant> rest= rRepo.findById(res.getRestaurantId());
+		if(rest.isEmpty()) {
+			throw new ResolutionException("Enter correct restaurent id");
+		}else {
+			Restaurant r= rest.get();
+			List<Item> itemlist= r.getItemList();
+		if(itemlist.size()==0) {
+			throw new ItemException("item not available" );
+		}else {
+			return itemlist;
+		}
+			
+			
+		}
 	}
 
 	@Override
@@ -130,8 +148,6 @@ public class ItemServiceImpl implements ItemService{
 
 		List<Item> allitem= iRepo.findAllByItemName(name);
 
-
-		
 		if(allitem.size()==0) {
 			throw new ItemException("no item available by this name");
 		}

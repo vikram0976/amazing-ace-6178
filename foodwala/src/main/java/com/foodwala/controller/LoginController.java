@@ -21,7 +21,7 @@ public class LoginController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> logIntoAccount(@RequestBody LoginDTO dto) throws LoginException{
+	public ResponseEntity<String> logIntoAccount( @RequestBody LoginDTO dto) throws LoginException{
 		
 		
     return new ResponseEntity<String>(loginService.logIntoAccount(dto),HttpStatus.ACCEPTED);

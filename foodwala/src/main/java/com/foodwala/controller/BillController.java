@@ -3,6 +3,7 @@ package com.foodwala.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class BillController {
 	private BillService bService;
 	
 	@PostMapping("/bills")
-	public ResponseEntity<Bill> saveBill(@RequestBody Bill bill) throws BillException{
+	public ResponseEntity<Bill> saveBill( @RequestBody  Bill bill) throws BillException{
 		
 		Bill b= bService.addBill(bill);
 		
@@ -36,13 +37,13 @@ public class BillController {
 	}
 	
 	@PutMapping("/bills")
-	public ResponseEntity<Bill> updateBill(@RequestBody Bill bill) throws BillException{
+	public ResponseEntity<Bill> updateBill( @RequestBody Bill bill) throws BillException{
 		Bill b= bService.updateBill(bill);
 		return new ResponseEntity<Bill>(b,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/bills")
-	public ResponseEntity<Bill> removeBill(@RequestBody Bill bill) throws BillException{
+	public ResponseEntity<Bill> removeBill( @RequestBody Bill bill) throws BillException{
 		
 		Bill b=bService.removeBill(bill);
 		
@@ -50,7 +51,7 @@ public class BillController {
 	}
 	
 	@GetMapping("/bills")
-	public ResponseEntity<Bill> viewBill(@RequestBody Bill bill) throws BillException{
+	public ResponseEntity<Bill> viewBill( @RequestBody Bill bill) throws BillException{
 		
 		Bill b= bService.viewBill(bill);
 		return new ResponseEntity<Bill>(b,HttpStatus.ACCEPTED);

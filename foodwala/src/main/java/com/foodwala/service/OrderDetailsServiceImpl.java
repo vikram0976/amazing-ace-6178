@@ -89,7 +89,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 
 	@Override
 	public List<OrderDetails> viewAllOrder(Restaurant res) throws RestaurantExecption, OrderDetailsException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

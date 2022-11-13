@@ -27,7 +27,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer catId;
-	@NotNull(message = "category name should not be null")
+	//@NotNull(message = "category name should not be null")
 	private String categoryName;
 	
 	@OneToOne(cascade = CascadeType.ALL)
