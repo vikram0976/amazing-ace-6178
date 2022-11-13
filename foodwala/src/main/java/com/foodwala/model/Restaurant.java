@@ -1,6 +1,7 @@
 package com.foodwala.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,12 +35,15 @@ public class Restaurant {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer restaurantId;
 	private String restaurantName;
-
-	@OneToOne(cascade = CascadeType.ALL)
+	
+	
+    
+	@OneToOne(cascade =CascadeType.ALL)
 	private Address address;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Item> itemList;
+
+	@ManyToMany(cascade =CascadeType.ALL)
+	private List<Item> itemList=new ArrayList<>();
 	
 	@NotNull(message = "Enter manager name")
 	private String managerName;
@@ -45,7 +51,8 @@ public class Restaurant {
 	@Size(min = 10, message = "contact number should be 10 digit")
 	private String contactNumber;
 	
-	
+	//souvik added password
+	private String password;
 
 	
 }

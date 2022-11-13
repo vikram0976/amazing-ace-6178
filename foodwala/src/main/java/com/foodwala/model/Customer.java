@@ -1,7 +1,6 @@
 package com.foodwala.model;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -30,9 +29,11 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
+
 	@NotNull(message = "enter first name")
 	@Size(min = 3,max = 15)
 	private String firstName;
+  
 	@NotNull(message = "enter last name")
 	@Size(min = 3,max = 15)
 	private String lastName;
@@ -40,13 +41,16 @@ public class Customer {
 	@NotNull
 	@Size(min = 12, message ="enter the vaild age" )
 	private Integer age;
+  
 	@NotNull
 	private String gender;
 	
 	@NotNull
 	@Size(min = 10, message = "entre correct mobile number")
 	private String mobileNumber;
+
 	
+	private String password;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
@@ -55,8 +59,11 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.ALL)
 	private FoodCart foodCart;
 	
+
 	@Email(message = "email formate is not correct ")
 	private String email;
+
+	
 	
 
 	
