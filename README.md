@@ -34,7 +34,6 @@
 - Customer Module
 - Category Module
 - FoodCart Module
-- 
 - Order and Bill Module
 
 # Features
