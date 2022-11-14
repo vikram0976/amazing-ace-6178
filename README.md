@@ -18,7 +18,6 @@
 
 # Tech Stack
 - Java
-- Hibernate
 - Spring Framework
 - Spring Boot
 - Spring Data JPA
@@ -73,16 +72,6 @@ https://localhost:8800/
 http://localhost:8800/swagger-ui/
 ```
 # API Reference
-
-
-
-
-
-
-
-
-
- 
 
 
 
