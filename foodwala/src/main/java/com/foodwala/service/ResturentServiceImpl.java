@@ -1,5 +1,6 @@
 package com.foodwala.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,7 +128,10 @@ public class ResturentServiceImpl implements ResturentService{
 		 
 	}
 
-	@Override
+
+	
+
+@Override
 	public Restaurant viewResturent(Restaurant resturent) throws Exception {
 		
 		Optional<Restaurant> res=rservice.findById(resturent.getRestaurantId());
@@ -139,4 +143,56 @@ public class ResturentServiceImpl implements ResturentService{
 		
 		throw new Exception("Resturent not found given by id");
 	}
+	
+	@Override
+	public List<Restaurant> getResturentByAddress(String city) throws Exception {
+		List<Restaurant> list=rservice.findAll();
+		
+	
+		
+		List<Restaurant> list2=new ArrayList<>();
+		for(Restaurant r:list) {
+			if(r.getAddress().getCity().equals(city)) {
+				list2.add(r);
+			}
+			
+		}
+		
+		if(list2.size()==0) {
+			throw new Exception("no restaurant in city "+city);
+		}
+		
+		return list2;
+		
+	}
+
+	@Override
+	public List<Restaurant> ViewResturentByItem(String itemnaem) throws ResturentException {
+		
+         List<Restaurant> resturents=rservice.findAll();
+		
+		 List<Restaurant> resturent=new ArrayList<>();
+		
+		for(Restaurant rest:resturents) {
+			
+			  List<Item> itms=rest.getItemList();
+			  
+			  for(Item itm:itms) {
+				  if(itm.getItemName().equalsIgnoreCase(itemnaem)) {
+					  resturent.add(rest);
+					  break;
+				  }
+			  }
+			
+		}
+		if(resturent.size()==0) {
+			throw new ResturentException("item not found in ay resturent");
+		}
+		
+		return resturent;
+	}
+
+
+
+
 }

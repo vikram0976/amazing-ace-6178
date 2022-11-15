@@ -1,10 +1,13 @@
 package com.foodwala.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,6 +58,25 @@ public class ResturentController {
 	
 	return new ResponseEntity<Restaurant>(res,HttpStatus.OK);
 	
+		
+	}
+
+@GetMapping("getresturent/{city}")
+	public ResponseEntity<List<Restaurant>> getListResturent(@PathVariable("city") String city) throws Exception{
+		
+		List<Restaurant> rest=rService.getResturentByAddress(city);
+		return new ResponseEntity<List<Restaurant>>(rest,HttpStatus.OK);
+
+				
+		
+	}
+	
+	@GetMapping("/getresturentbyiten/{item}")
+	public ResponseEntity<List<Restaurant>> getResturentByItemname(@PathVariable String item) throws ResturentException{
+		
+		List<Restaurant> resturents=rService.ViewResturentByItem(item);
+		
+		return new ResponseEntity<List<Restaurant>>(resturents,HttpStatus.OK);
 		
 	}
 
