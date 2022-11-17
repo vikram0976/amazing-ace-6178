@@ -7,6 +7,9 @@
   all the fundamental CRUD operations of any Online Food Booking platform with user validation at every step.</li>
 <li>This project is developed by team of 4 Back-end Developers during project week in Masai School.</li>
 
+
+![Food Wala(jpg)](https://user-images.githubusercontent.com/103572468/202452942-2d50e2c8-5d9a-4426-8e7a-af2ec820413c.png)
+
 ### This is a collaborative project, completed by a team of 4 Java backend developers at Masai School.
 
 # Collaborators
