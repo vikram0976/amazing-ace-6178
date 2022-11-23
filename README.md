@@ -74,7 +74,8 @@ https://localhost:8800/
 ```
 http://localhost:8800/swagger-ui/
 ```
-# API Reference
+# ER Diagram
+![Er diagram](https://user-images.githubusercontent.com/103572468/203549421-6bb9fb58-bfc7-4863-8be5-7b4658494f07.jpeg)
 
 
 
